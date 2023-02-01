@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
+import 'app/presentation/ui/basic_crud_operation_with_db/create_new_user_data/page/list_of_user.dart';
 import 'app/presentation/ui/basic_crud_operation_with_db/login_user/page/login_user.dart';
 import 'app/presentation/ui/basic_crud_operation_with_db/user_list_upadate_and_delete_operaton /page/add_new_user.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: LogInUser (), // UserListDetail(),
+          home: UserListDetail (), // UserListDetail(),
         );
       },
     );

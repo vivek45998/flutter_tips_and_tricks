@@ -3,8 +3,11 @@ import 'package:braintree/app/core/data/remote/remote_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/data/model/user_data.dart';
+
 class UserListCtrl extends GetxController{
     var user=UserListData().obs;
+    var userListDetail=UserList().obs;
    var userList=<UserListData>[].obs;
    var editData=TextEditingController().obs;
     var nameController = TextEditingController().obs;
@@ -15,7 +18,11 @@ class UserListCtrl extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getUserList();
+    getUserDetail();
+   // getUserList();
+  }
+  getUserDetail() async {
+     userListDetail=await getUserDetailWithAuthToken();
   }
   getUserList() async {
      userList.clear();

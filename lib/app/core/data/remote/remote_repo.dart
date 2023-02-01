@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:braintree/app/core/data/model/logged_in_user_detail.dart';
 import 'package:braintree/app/core/data/model/user_list.dart';
 import 'package:braintree/app/core/values/app_network_string.dart';
+import 'package:braintree/app/core/values/app_strings.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:dio/dio.dart';
+
+import '../model/user_data.dart';
 var dio = Dio();
 extension RemoteRepo on GetxController {
 
@@ -119,4 +122,21 @@ extension RemoteRepo on GetxController {
     }
   }
 
+  getUserDetailWithAuthToken() async {
+    var response = await http.get(Uri.parse(NetworkConstant.userListApi),headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      "Authorization":NetworkConstant.authKey
+    },);
+    //var response =  await client.get(uri);
+
+    if (response.statusCode == 200) {
+      var data = UserList.fromJson(jsonDecode(response.body));
+      print("data=====$data");
+      return data;
+      // return UserListData.fromJson(jsonDecode(response.body));
+    } else {
+      print("error====${response.body}");
+      throw Exception('Failed to load album');
+    }
+  }
 }
